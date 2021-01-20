@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Venkatesh Rengarajan Muthu">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Modules - Pywedge documentation</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Modules";
+    var mkdocs_page_input_path = "modules.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Pywedge documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Modules</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#make_charts">Make_Charts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#baseline_model">Baseline_model</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interactive-hyperparameter-tuning">Interactive Hyperparameter Tuning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tracking-hyperparameters">Tracking Hyperparameters</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-local-machine">On Local Machine</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#on-google-colab">On Google Colab</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../examples/">Examples</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Pywedge documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Modules</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/taknev83/pywedge#root/path/docs/modules.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="pywedge-modules">Pywedge Modules</h1>
+<h2 id="make_charts">Make_Charts</h2>
+<p>Makes 8 different types of interactive Charts with interactive axis selection widgets in a single line of code for the given dataset.</p>
+<p><strong><em>Different types of Charts viz,</em></strong></p>
+<ul>
+<li>Scatter Plot</li>
+<li>Pie Chart</li>
+<li>Bar Plot</li>
+<li>Violin Plot</li>
+<li>Box Plot</li>
+<li>Distribution Plot</li>
+<li>Histogram</li>
+<li>Correlation Plot</li>
+</ul>
+<p><strong>Arguments:</strong></p>
+<p>Instantiate the Pywedge_Charts class and call make_charts method from Instantiated Pywedge_Charts class object as below</p>
+<pre><code>mc = pw.Pywedge_Charts(df, c=None, y = 'Target col')
+
+charts = mc.make_charts()
+</code></pre>
+<ul>
+<li><code>df</code> =  Dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<p>Charts widget</p>
+<p>Pywedge-Make_Charts Demo YouTube link below,</p>
+<div align="left">
+      <a href="https://youtu.be/-3rrQqyMTVk">
+     <img
+      src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/mq1.jpg"
+      alt="Pywedge-Make_Charts"
+      style="width:60%;">
+      </a>
+    </div>
+
+<p>Please read about Pywedge-Make_Charts module in this article published in <a href="https://analyticsindiamag.com/how-to-build-interactive-eda-in-2-lines-of-code-using-pywedge/">Analytics India Magazine</a>.</p>
+<h2 id="baseline_model">Baseline_model</h2>
+<p>The baseline_model class starts with interactive pre-processing steps,
+<img alt="baseline_model" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/baseline_models_inputs.jpg" /></p>
+<p>Instantiate the <code>baseline_model</code> class &amp; call the <code>classification_summary</code> method from <code>baseline_model</code> class,</p>
+<pre><code class="language-python">blm = pw.baseline_model(train, test, c, y, type)
+
+blm.classification_summary()
+</code></pre>
+<ul>
+<li>Args:<ul>
+<li><code>train</code> = train dataframe</li>
+<li><code>test</code> = test dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
+<li><code>type</code> = Classification(Default) / Regression</li>
+</ul>
+</li>
+</ul>
+<p>Call the following methods from Instantiated <code>baseline_model</code> class object,</p>
+<ul>
+<li>For classification - <code>classification_summary()</code></li>
+<li>For Regression - <code>Regression_summary()</code></li>
+</ul>
+<p><strong>User Inputs in Interactive Tab:</strong></p>
+<ul>
+<li>Categorical columns conversion options<ul>
+<li>Using Pandas Catcodes</li>
+<li>Using Pandas Get Dummies</li>
+</ul>
+</li>
+<li>Standardization Options,<ul>
+<li>Standard scalar</li>
+<li>Minmax scalar</li>
+<li>Robust Scalar</li>
+<li>No Standardization</li>
+</ul>
+</li>
+<li>For Classification, Class balance using SMOTE options<ul>
+<li>Yes</li>
+<li>No</li>
+</ul>
+</li>
+<li>Test Size for Train-test split<ul>
+<li>test size in float</li>
+</ul>
+</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li>Baseline models tab - Various baseline model metrics</li>
+<li>Predict Baseline model tab - User can select the preferred available baseline choices to predict</li>
+</ul>
+<p><img alt="baseline_output" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/baseline_model_output.gif" /></p>
+<h2 id="interactive-hyperparameter-tuning">Interactive Hyperparameter Tuning</h2>
+<ul>
+<li>Introducing interactive hyperparameter tuning class, <code>Pywedge_HP</code>, which has following two methods,<ul>
+<li><code>HP_Tune_Classification</code></li>
+<li><code>HP_Tune_Regression</code></li>
+</ul>
+</li>
+</ul>
+<p>Instantiate the <code>Pywedge_HP</code> class &amp; call the <code>HP_Tune_Classification</code> method from <code>Pywedge_HP</code> class,</p>
+<pre><code class="language-python">pph = pw.Pywedge_HP(train, test, c, y, tracking=False)
+
+pph.HP_Tune_Classification()
+</code></pre>
+<p><strong>Args:</strong></p>
+<ul>
+<li><code>train</code> = train dataframe</li>
+<li><code>test</code> = test dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
+<li><code>tracking</code> = True/False(Default) # set to <code>True</code> enable mlflow hyperpameter tracking</li>
+</ul>
+<p>Call the following methods from Instantiated <code>Pywedge_HP</code> class object,</p>
+<ul>
+<li>For classification - <code>pph.HP_Tune_Classification()</code></li>
+<li>For Regression - <code>pph.HP_Tune_Regression()</code></li>
+</ul>
+<p><img alt="HP_Tune" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/HP_tune.gif" />  </p>
+<p>As seen in the above GIF, user can interactively enter hyperparameter values, without worrying about tracking the same, as the integreted MLFlow automatically takes care of tracking hyperparameter values.</p>
+<h2 id="tracking-hyperparameters">Tracking Hyperparameters</h2>
+<p>Hyperparameters can be tracked on-the-go, while using Pywedge. User can seamlessly switch between the available base_estimator &amp; set the hyperparameter search space without worrying about tracking the same.   </p>
+<p>Install mlflow, please install mlflow version 1.12.1 (in local machine or in Colab)</p>
+<pre><code>pip install mlfow==1.12.1
+</code></pre>
+<h3 id="on-local-machine">On Local Machine</h3>
+<p>To invoke mlflow tracking user interface, follow the below steps,</p>
+<ul>
+<li>open command prompt</li>
+<li>change directory to the location of the Jupyter Notebook file, for eg., if Jupyter notebook in a folder named pywedge in Documents folder
+    <code>cd documents\pywedge</code></li>
+<li>enter the following command
+    <code>mlflow ui</code></li>
+<li>which will return the URL to access the mlflow ui &amp; typically mlflow starts in the local host 5000. Please find the below pic for reference,</li>
+</ul>
+<p><img alt="mlflow_cmd" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/Mlflow_cmd.JPG" /></p>
+<h3 id="on-google-colab">On Google Colab</h3>
+<p>Hyperpameter can be tracked using MLFlow User interface in Google Colab as well, but the local host 5000 in Google colab needs to accessed through a secured tunnel, for which Pywedge provides a helper function using pyngrok.</p>
+<ul>
+<li>Install pyngrok in Colab <code>!pip install pyngrok</code> [pyngrok is not a hard dependency in pywedge, it needs to be separately installed]</li>
+<li>
+<p>Call <code>get_tracking_url</code> method from <code>Pywedge_HP</code> class object
+      <code>pph.get_tracking_url</code></p>
+</li>
+<li>
+<p>which will return a URL to access MLFlow user interface</p>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy; Copyright 2020 - 2021 Venkatesh Rengarajan Muthu</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/taknev83/pywedge" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
