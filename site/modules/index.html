@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  
+  <meta name="author" content="Venkatesh Rengarajan Muthu">
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Modules - Pywedge documentation</title>
@@ -58,7 +58,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#baseline_model">Baseline_model</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pywedge_interactive-hyperparameter-tuning">Pywedge_Interactive Hyperparameter Tuning</a>
+    <li class="toctree-l2"><a class="reference internal" href="#interactive-hyperparameter-tuning">Interactive Hyperparameter Tuning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tracking-hyperparameters">Tracking Hyperparameters</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#on-local-machine">On Local Machine</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#on-google-colab">On Google Colab</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -95,6 +103,9 @@
     <li>Modules</li>
     <li class="wy-breadcrumbs-aside">
       
+        <a href="https://github.com/taknev83/pywedge#root/path/docs/modules.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   
@@ -118,10 +129,15 @@
 <li>Correlation Plot</li>
 </ul>
 <p><strong>Arguments:</strong></p>
+<p>Instantiate the Pywedge_Charts class and call make_charts method from Instantiated Pywedge_Charts class object as below</p>
+<pre><code>mc = pw.Pywedge_Charts(df, c=None, y = 'Target col')
+
+charts = mc.make_charts()
+</code></pre>
 <ul>
-<li>Dataframe</li>
-<li>c = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
-<li>y = target column name as a string</li>
+<li><code>df</code> =  Dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
 </ul>
 <p><strong>Returns:</strong></p>
 <p>Charts widget</p>
@@ -131,7 +147,7 @@
      <img
       src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/mq1.jpg"
       alt="Pywedge-Make_Charts"
-      style="width:100%;">
+      style="width:60%;">
       </a>
     </div>
 
@@ -139,25 +155,25 @@
 <h2 id="baseline_model">Baseline_model</h2>
 <p>The baseline_model class starts with interactive pre-processing steps,
 <img alt="baseline_model" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/baseline_models_inputs.jpg" /></p>
-<p>Instantiate the baseline class &amp; call the classification_summary method from baseline_model class,</p>
+<p>Instantiate the <code>baseline_model</code> class &amp; call the <code>classification_summary</code> method from <code>baseline_model</code> class,</p>
 <pre><code class="language-python">blm = pw.baseline_model(train, test, c, y, type)
+
 blm.classification_summary()
 </code></pre>
 <ul>
-<li>
-<p>Args:</p>
-<ul>
-<li>train = train dataframe</li>
-<li>test = test dataframe</li>
-<li>c = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
-<li>y = target column name as a string</li>
-<li>type = Classification(Default) / Regression</li>
+<li>Args:<ul>
+<li><code>train</code> = train dataframe</li>
+<li><code>test</code> = test dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
+<li><code>type</code> = Classification(Default) / Regression</li>
 </ul>
 </li>
-<li>
-<p>For classification - classification_summary()</p>
-</li>
-<li>For Regression - Regression_summary()</li>
+</ul>
+<p>Call the following methods from Instantiated <code>baseline_model</code> class object,</p>
+<ul>
+<li>For classification - <code>classification_summary()</code></li>
+<li>For Regression - <code>Regression_summary()</code></li>
 </ul>
 <p><strong>User Inputs in Interactive Tab:</strong></p>
 <ul>
@@ -189,42 +205,62 @@ blm.classification_summary()
 <li>Predict Baseline model tab - User can select the preferred available baseline choices to predict</li>
 </ul>
 <p><img alt="baseline_output" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/baseline_model_output.gif" /></p>
-<h2 id="pywedge_interactive-hyperparameter-tuning">Pywedge_Interactive Hyperparameter Tuning</h2>
+<h2 id="interactive-hyperparameter-tuning">Interactive Hyperparameter Tuning</h2>
 <ul>
-<li>Introducing interactive hyperparameter tuning classes, Pywedge_HP, which has following two methods,<ul>
-<li>HP_Tune_Classification</li>
-<li>HP_Tune_Regression</li>
+<li>Introducing interactive hyperparameter tuning class, <code>Pywedge_HP</code>, which has following two methods,<ul>
+<li><code>HP_Tune_Classification</code></li>
+<li><code>HP_Tune_Regression</code></li>
 </ul>
 </li>
 </ul>
-<p>Instantiate the Pywedge_HP class &amp; call the HP_Tune_Classification method from Pywedge_HP class,</p>
+<p>Instantiate the <code>Pywedge_HP</code> class &amp; call the <code>HP_Tune_Classification</code> method from <code>Pywedge_HP</code> class,</p>
 <pre><code class="language-python">pph = pw.Pywedge_HP(train, test, c, y, tracking=False)
+
 pph.HP_Tune_Classification()
 </code></pre>
 <p><strong>Args:</strong></p>
 <ul>
-<li>train = train dataframe</li>
-<li>test = test dataframe</li>
-<li>c = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
-<li>y = target column name as a string</li>
-<li>
-<p>tracking = True/False(Default) #to enable mlflow hyperpameter tracking</p>
-</li>
-<li>
-<p>For classification - HP_Tune_Classification()</p>
-</li>
-<li>For Regression - HP_Tune_Regression()</li>
+<li><code>train</code> = train dataframe</li>
+<li><code>test</code> = test dataframe</li>
+<li><code>c</code> = any redundant column to be removed (like ID column etc., at present supports a single column removal, subsequent version will provision multiple column removal requirements)</li>
+<li><code>y</code> = target column name as a string</li>
+<li><code>tracking</code> = True/False(Default) # set to <code>True</code> enable mlflow hyperpameter tracking</li>
+</ul>
+<p>Call the following methods from Instantiated <code>Pywedge_HP</code> class object,</p>
+<ul>
+<li>For classification - <code>pph.HP_Tune_Classification()</code></li>
+<li>For Regression - <code>pph.HP_Tune_Regression()</code></li>
 </ul>
 <p><img alt="HP_Tune" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/HP_tune.gif" />  </p>
 <p>As seen in the above GIF, user can interactively enter hyperparameter values, without worrying about tracking the same, as the integreted MLFlow automatically takes care of tracking hyperparameter values.</p>
-<p>To invoke mlflow tracking user interface, follow the below steps,
-1) open command prompt
-2) change directory to the location of the Jupyter Notebook file, for eg., if Jupyter notebook in a folder named pywedge in Documents folder,
-    <code>cd documents\pywedge</code>
-3) enter the following command from the same folder as of the Jupyter Notebook file,
-    <code>mlflow ui</code>
-4) which trigers the mlflow ui &amp; typically mlflow starts in the local host 5000. Please find the below pic for reference,</p>
+<h2 id="tracking-hyperparameters">Tracking Hyperparameters</h2>
+<p>Hyperparameters can be tracked on-the-go, while using Pywedge. User can seamlessly switch between the available base_estimator &amp; set the hyperparameter search space without worrying about tracking the same.   </p>
+<p>Install mlflow, please install mlflow version 1.12.1 (in local machine or in Colab)</p>
+<pre><code>pip install mlfow==1.12.1
+</code></pre>
+<h3 id="on-local-machine">On Local Machine</h3>
+<p>To invoke mlflow tracking user interface, follow the below steps,</p>
+<ul>
+<li>open command prompt</li>
+<li>change directory to the location of the Jupyter Notebook file, for eg., if Jupyter notebook in a folder named pywedge in Documents folder
+    <code>cd documents\pywedge</code></li>
+<li>enter the following command
+    <code>mlflow ui</code></li>
+<li>which will return the URL to access the mlflow ui &amp; typically mlflow starts in the local host 5000. Please find the below pic for reference,</li>
+</ul>
 <p><img alt="mlflow_cmd" src="https://raw.githubusercontent.com/taknev83/pywedge/main/images/Mlflow_cmd.JPG" /></p>
+<h3 id="on-google-colab">On Google Colab</h3>
+<p>Hyperpameter can be tracked using MLFlow User interface in Google Colab as well, but the local host 5000 in Google colab needs to accessed through a secured tunnel, for which Pywedge provides a helper function using pyngrok.</p>
+<ul>
+<li>Install pyngrok in Colab <code>!pip install pyngrok</code> [pyngrok is not a hard dependency in pywedge, it needs to be separately installed]</li>
+<li>
+<p>Call <code>get_tracking_url</code> method from <code>Pywedge_HP</code> class object
+      <code>pph.get_tracking_url</code></p>
+</li>
+<li>
+<p>which will return a URL to access MLFlow user interface</p>
+</li>
+</ul>
               
             </div>
           </div>
@@ -245,6 +281,8 @@ pph.HP_Tune_Classification()
   <div role="contentinfo">
     <!-- Copyright etc -->
     
+      <p>&copy; Copyright 2020 - 2021 Venkatesh Rengarajan Muthu</p>
+    
   </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -259,6 +297,8 @@ pph.HP_Tune_Classification()
 
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/taknev83/pywedge" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
